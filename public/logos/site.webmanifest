@@ -1,6 +1,6 @@
-{
-    "name": "",
-    "short_name": "",
+﻿{
+    "name": "IronPath Concrete",
+    "short_name": "IronPath",
     "icons": [
         {
             "src": "/logos/android-chrome-192x192.png?v=20",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#b45309",
+    "background_color": "#1c1410",
     "display": "standalone"
 }

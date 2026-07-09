@@ -1,6 +1,6 @@
 // src/app/globalVariables.scss
 // ─────────────────────────────────────────────────────────────────────────────
-// Arctic Air HVAC — Brand Tokens
+// IronPath Concrete — Brand Tokens
 //
 // THREE DISTINCT FONTS:
 //   $titleFont  → Barlow Condensed  — bold condensed display (hero h1, section titles)
@@ -19,20 +19,20 @@ $textFont:   var(--font-inter),            'Inter',            sans-serif;
 
 // ── Core Palette ─────────────────────────────────────────────────────────────
 $black:      #000000;
-$obsidian:   #0d1b2a;
-$blackflat:  #1a2a3a;
+$obsidian:   #1c1410;
+$blackflat:  #2a1f18;
 $white:      #FFFFFF;
-$offwhite:   #f8fafc;
+$offwhite:   #faf7f2;
 
-// Greys (navy-tinted)
-$darkgrey:   #7a9bb5;
-$grey:       #4a6a85;
-$lightgrey:  #c8d8e8;
+// Greys (warm concrete-tinted)
+$darkgrey:   #a89078;
+$grey:       #6b5644;
+$lightgrey:  #e8dcc8;
 
-// Brand Accent
-$orange:     #f97316;
-$lightorange:#fb923c;
-$darkorange: #c2410c;
+// Brand Accent — amber/brown
+$orange:     #b45309;
+$lightorange:#d97706;
+$darkorange: #92400e;
 
 // Legacy aliases
 $green:      $orange;
