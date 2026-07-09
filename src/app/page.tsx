@@ -1,13 +1,4 @@
-// Arctic Air HVAC — Homepage
-// Phase 2: Reshuffled component order + fresh content
-// Original order: WelcomePage → TrustBar → ServiceCards → WhatToExpect → WhyChooseUs
-//                 → ProcessTimeline → ImpactMetrics → Testimonials → GuaranteeSection
-//                 → LocalServiceAreas → FAQ → CTABanner → BlogPreview → Form
-//
-// New order:      WelcomePage → TrustBar → ImpactMetrics → ServiceCards
-//                 → WhyChooseUs → CTABanner (mid) → ProcessTimeline → Testimonials
-//                 → GuaranteeSection → LocalServiceAreas → WhatToExpect → FAQ
-//                 → BlogPreview → Form
+// IronPath Concrete — Homepage
 "use client";
 
 import styles from "./page.module.scss";
@@ -28,292 +19,202 @@ import FAQ                from "#/PageComponents/FAQ/FAQ";
 import BlogPreviewGrid    from "#/PageComponents/BlogPreviewGrid/BlogPreviewGrid";
 
 import {
-  faFan, faFire, faWrench, faFilter, faThermometerHalf, faWind,
+  faRoad, faPersonWalking, faHouse, faIndustry, faWrench, faPaintRoller,
   faTrophy, faChartLine, faClock,
-  faBolt, faShieldHalved, faUsers,
+  faClipboardCheck, faShieldHalved, faUsers,
   faHeadset, faSearch, faFileContract, faCheckCircle,
-  faFileAlt, faRotateLeft, faLock, faStar,
+  faStar, faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import Variant4 from "#/PageComponents/ContactForms/Variant4/Form";
 
 export default function HomePage() {
 
-  // ── Services ────────────────────────────────────────────────────────────────
   const services = [
     {
-      icon: faFan,
-      title: "AC Repair",
-      body: "Same-day diagnosis on all makes and models. We stock common parts on every truck — most repairs completed in one visit.",
-      link: "/services/ac-repair",
+      icon: faRoad,
+      title: "Driveways",
+      body: "New and replacement concrete driveways with proper base prep, control joints, and finishes built for Central Texas soil and heat.",
+      link: "/services/driveways",
     },
     {
-      icon: faFire,
-      title: "Heating & Furnace",
-      body: "Gas furnaces, heat pumps, dual-fuel systems — repaired fast with a full CO safety inspection on every heating call.",
-      link: "/services/heating",
+      icon: faPersonWalking,
+      title: "Patios & Walkways",
+      body: "Patio slabs, sidewalks, and walkways with drainage-smart layouts and clean, traction-ready finishes.",
+      link: "/services/patios-walkways",
+    },
+    {
+      icon: faHouse,
+      title: "Foundations",
+      body: "Residential and light commercial foundation slabs coordinated with builders — plan-driven and inspection-ready.",
+      link: "/services/foundations",
+    },
+    {
+      icon: faPaintRoller,
+      title: "Stamped & Decorative",
+      body: "Stamped patterns, color, and decorative finishes that deliver curb appeal without paver maintenance.",
+      link: "/services/stamped-decorative",
     },
     {
       icon: faWrench,
-      title: "New Installation",
-      body: "Right-sized system selection, clean installation, full commissioning. We never upsell equipment you don't need.",
-      link: "/services/installation",
+      title: "Concrete Repair",
+      body: "Crack repair, section replacement, and honest advice on when to repair vs. fully replace a failing slab.",
+      link: "/services/concrete-repair",
     },
     {
-      icon: faFilter,
-      title: "Duct Cleaning",
-      body: "Full system clean and sanitize — removes years of buildup, improves airflow, and makes a real difference for allergy sufferers.",
-      link: "/services/duct-cleaning",
-    },
-    {
-      icon: faThermometerHalf,
-      title: "Maintenance Plans",
-      body: "Two tune-ups per year, 15% off repairs, priority emergency scheduling. Month-to-month — cancel anytime.",
-      link: "/services/maintenance",
-    },
-    {
-      icon: faWind,
-      title: "Indoor Air Quality",
-      body: "UV purifiers, whole-home humidifiers, HEPA-grade filtration. Breathe cleaner air in every room of your home.",
-      link: "/services/indoor-air-quality",
+      icon: faIndustry,
+      title: "Commercial Flatwork",
+      body: "Parking pads, sidewalks, equipment pads, and light commercial slabs for PMs and municipalities.",
+      link: "/services/commercial-flatwork",
     },
   ];
 
-  // ── Impact metrics (moved up — builds trust before selling) ─────────────────
   const metrics = [
-    { icon: faTrophy,    value: 2400, label: "Homes and businesses served in Central Texas", suffix: "+", duration: 3 },
-    { icon: faClock,     value: 15,   label: "Years of local HVAC experience",               suffix: "+", duration: 2 },
-    { icon: faChartLine, value: 98,   label: "Customer satisfaction rating",                 suffix: "%", duration: 2 },
+    { icon: faTrophy,    value: 4000, label: "Pours completed across Central Texas",  suffix: "+", duration: 3 },
+    { icon: faClock,     value: 18,   label: "Years of local concrete craftsmanship", suffix: "+", duration: 2 },
+    { icon: faChartLine, value: 98,   label: "Customer satisfaction rating",          suffix: "%", duration: 2 },
   ];
 
-  // ── Why Choose Us (3 differentiators) ───────────────────────────────────────
   const whyFeatures = [
     {
-      icon: faBolt,
-      title: "Emergency Service — Any Hour",
-      description: "AC out at 11pm on a Saturday in July? We answer. Emergency dispatch is available 7 days a week, evenings included. Central Texas heat doesn't wait, and neither do we.",
+      icon: faClipboardCheck,
+      title: "Free On-Site Estimates",
+      description: "We measure on-site, check grade and access, and give you a written flat-rate quote before any forms go in.",
     },
     {
       icon: faShieldHalved,
-      title: "NATE-Certified, TDLR-Licensed",
-      description: "Every technician on our crew holds NATE certification and a valid Texas TDLR license. No unlicensed subs, no shortcuts. Your home is protected from the first call to the final invoice.",
+      title: "ACI-Trained Finishers · Bonded & Insured",
+      description: "Crews led by ACI-trained finishers with full bonding and insurance on every pour — documentation available on request.",
     },
     {
       icon: faUsers,
-      title: "Locally Owned Since 2010",
-      description: "We're not a franchise. Arctic Air was founded in Waco by Mike Hawkins, a Waco native with 20+ years in the trade. Every decision is made locally, and every call is answered by someone who lives here.",
+      title: "Locally Owned Since 2008",
+      description: "We're not a franchise. IronPath was founded in Waco by Ray Delgado. Every decision is made locally.",
     },
   ];
 
-  // ── How it works (process) ───────────────────────────────────────────────────
   const processSteps = [
     {
       number: 1,
       title: "Call or Book Online",
-      description: "Phone, text, or the form below — your choice. We'll confirm a same-day or next-day appointment that fits your schedule.",
+      description: "Phone, text, or the form below — your choice. We'll confirm a free on-site estimate that fits your schedule.",
       icon: faHeadset,
     },
     {
       number: 2,
-      title: "Tech Arrives On Time",
-      description: "Uniformed, background-checked tech shows up in the window we promised. Full system diagnosis — explained in plain English, not HVAC jargon.",
+      title: "We Measure & Assess",
+      description: "We measure square footage, check drainage and access, and recommend thickness, finish, and joints in plain English.",
       icon: faSearch,
     },
     {
       number: 3,
       title: "You Get a Flat-Rate Quote",
-      description: "Written price before we touch anything. You decide — zero pressure to proceed. The quote covers parts and labor, and it never changes mid-job.",
+      description: "Written price before excavation or pour day. You decide — zero pressure. The quote covers prep, pour, and finish.",
       icon: faFileContract,
     },
     {
       number: 4,
-      title: "Done Right, Warranted",
-      description: "Quality parts, clean worksite, 1-year parts and labor warranty on every repair. We leave when you're satisfied — not when we feel like it.",
+      title: "Pour, Cure & Warranty",
+      description: "Professional placement and finish, clear cure guidance, and a 5-Year Workmanship Warranty on every project.",
       icon: faCheckCircle,
     },
   ];
 
-  // ── What to expect (moved lower — reinforces process detail after trust built) ─
   const expectations = [
     {
       icon: faSearch,
-      title: "Honest System Assessment",
-      description: "We diagnose what's actually wrong — not what's most profitable to fix. You see the findings before we recommend anything.",
+      title: "Honest Scope Assessment",
+      description: "We tell you when a repair is enough and when a full pour makes sense — not what's most profitable to sell.",
     },
     {
-      icon: faWrench,
-      title: "Clean, Respectful Service",
-      description: "Shoe covers on, work area protected, home left exactly as we found it. Every single visit.",
+      icon: faLayerGroup,
+      title: "Base Prep That Lasts",
+      description: "Proper excavation, base, and compaction so your slab survives Central Texas clay and heat — not a thin pour on bad dirt.",
     },
     {
       icon: faCheckCircle,
       title: "Upfront Flat-Rate Price",
-      description: "Written quote before any work starts. The number doesn't change when the job runs long — that's our problem, not yours.",
+      description: "Written quote before we start. The number doesn't change when the job runs long — that's our problem, not yours.",
     },
     {
       icon: faStar,
-      title: "Manufacturer-Quality Parts",
-      description: "We use OEM-grade parts on every repair, backed by the full 1-year warranty. No gray-market components, no shortcuts.",
+      title: "Clear Cure Guidance",
+      description: "You'll know when you can walk, park, and seal — so you don't ruin a perfect finish by driving too early.",
     },
   ];
 
-  // ── Service areas ────────────────────────────────────────────────────────────
   const localAreas = [
-    { town: "Waco",         benefit: "Home base — fastest dispatch and most available techs in the city.", badge: "Home Base" },
-    { town: "Hewitt",       benefit: "Full residential and commercial coverage. On our regular route.",     badge: "" },
-    { town: "Woodway",      benefit: "Same-day availability for Woodway homes and businesses.",             badge: "" },
-    { town: "Robinson",     benefit: "Regular service area — quick turnaround guaranteed.",                 badge: "" },
-    { town: "China Spring", benefit: "Rural coverage, no trip charge for most China Spring addresses.",     badge: "" },
-    { town: "Killeen",      benefit: "Full coverage for Killeen and Fort Cavazos area customers.",          badge: "" },
+    { town: "Waco",         benefit: "Home base — fastest scheduling in the city.", badge: "Home Base" },
+    { town: "Hewitt",       benefit: "Full residential and commercial coverage.", badge: "" },
+    { town: "Woodway",      benefit: "Regular availability for Woodway pours.", badge: "" },
+    { town: "Temple",       benefit: "Bell County driveways, patios, and flatwork.", badge: "" },
+    { town: "China Spring", benefit: "Rural coverage with the same flat-rate standards.", badge: "" },
+    { town: "Killeen",      benefit: "Full coverage for Killeen and Fort Cavazos area.", badge: "" },
   ];
 
-  // ── FAQ ──────────────────────────────────────────────────────────────────────
   const faq = [
-    {
-      question: "How much does AC repair cost in Waco?",
-      answer: "Most repairs run $150–$650 depending on the issue. Capacitors and contactors are typically $150–$250. Refrigerant recharges run $250–$500. We always provide a flat-rate written quote before starting — the diagnostic fee is waived when you proceed.",
-    },
-    {
-      question: "Do you offer emergency HVAC service?",
-      answer: "Yes — 7 days a week including evenings and weekends. In Central Texas heat, a broken AC is a genuine emergency. Call us anytime at (254) 900-1234.",
-    },
-    {
-      question: "How quickly can you come out?",
-      answer: "Same-day service is available most days. Emergency calls are dispatched within 1–2 hours. We'll give you an honest ETA when you call — not a 4-hour window.",
-    },
-    {
-      question: "What brands do you service?",
-      answer: "All major brands — Carrier, Trane, Lennox, Rheem, Goodman, York, Daikin, and more. We install Carrier and Trane as our preferred brands for new systems.",
-    },
-    {
-      question: "Are you licensed and insured in Texas?",
-      answer: "Yes — fully licensed by the Texas Department of Licensing and Regulation (TDLR), bonded, and insured. All technicians are NATE-certified. License number available on request.",
-    },
-    {
-      question: "Do you offer financing for new systems?",
-      answer: "Yes — flexible financing with approved credit, including 0% interest options for qualifying homeowners. Ask us when you get your quote.",
-    },
-  ];
-
-  // ── TrustBar badges (HVAC-specific) ─────────────────────────────────────────
-  const trustBadges = [
-    { icon: faStar,          label: "5.0 Google Rating",    sub: "200+ Reviews" },
-    { icon: faShieldHalved,  label: "TDLR Licensed",        sub: "Texas Certified" },
-    { icon: faTrophy,        label: "NATE Certified",       sub: "All Technicians" },
-    { icon: faClock,         label: "Same-Day Service",     sub: "7 Days a Week" },
-    { icon: faBolt,          label: "Emergency Available",  sub: "Evenings & Weekends" },
-    { icon: faFileAlt,       label: "Flat-Rate Pricing",    sub: "No Surprises" },
-    { icon: faRotateLeft,    label: "1-Year Warranty",      sub: "Parts & Labor" },
-    { icon: faLock,          label: "No Contracts",         sub: "Month-to-Month" },
-    { icon: faWrench,        label: "All Brands Serviced",  sub: "Any Make & Model" },
-    { icon: faUsers,         label: "Locally Owned",        sub: "Since 2010" },
+    { question: "How much does a concrete driveway cost in Waco?", answer: "Pricing depends on square footage, thickness, access, demolition needs, and finish. We provide a free on-site measure and a flat-rate written quote — no ballpark phone guesses that change later." },
+    { question: "How long before I can drive on new concrete?", answer: "Light foot traffic is usually fine after 24–48 hours. Most passenger vehicles wait about 7 days. We give you a specific timeline for your pour and weather conditions." },
+    { question: "Are you licensed and insured?", answer: "Yes. IronPath Concrete uses ACI-trained finishers and is bonded and insured. Proof of insurance is available for builders and property managers." },
+    { question: "Do you remove old concrete?", answer: "Yes — demolition and haul-away can be included in your quote so one crew handles tear-out through pour." },
+    { question: "What areas do you serve?", answer: "Waco, Hewitt, Woodway, McGregor, China Spring, Bellmead, Temple, Killeen, and most of Central Texas within about 60 miles of Waco." },
+    { question: "What warranty do you offer?", answer: "Every project is backed by our 5-Year Workmanship Warranty on finish and installation workmanship." },
   ];
 
   return (
     <main className={styles.pageWrapper}>
-
-      {/* 1. Hero */}
       <WelcomePage />
-
-      {/* 2. Scrolling trust strip — immediately after hero */}
-      <TrustBar
-        headline="Waco's trusted HVAC company — licensed, insured, and warrantied on every job"
-      />
-
-      {/* 3. Impact metrics — build credibility before pitching services */}
-      <div className={styles.section}>
-        <ImpactMetrics
-          title="Numbers That Speak for Us"
-          metrics={metrics}
-          cityName="Waco"
-        />
-      </div>
-
-      {/* 4. Services grid */}
+      <TrustBar headline="4.9★ · 900+ reviews · 4,000+ pours across Central Texas" />
       <div className={styles.section}>
         <ServiceCardComponent
-          heading="Complete HVAC Services for Your Home"
+          heading="Concrete Services Built for Central Texas"
+          subheading="Driveways, patios, foundations, decorative pours, repairs, and commercial flatwork — flat-rate quotes and ACI-trained finishers."
           cards={services}
         />
       </div>
-
-      {/* 5. Why Choose Us */}
       <div className={styles.section}>
-        <WhyChooseUs
-          cityName="Waco"
-          features={whyFeatures}
-          title="What Makes Arctic Air Different"
-        />
+        <ImpactMetrics metrics={metrics} cityName="Waco" title="18 Years, By the Numbers" />
       </div>
-
-      {/* 14. Contact form — final conversion point */}
       <div className={styles.section}>
-        <Variant4
-          title="Request Service or a Free Quote"
-          cityName="Waco"
-          slug="/"
-          spot="homepage-contact-form"
-          formVariant={2}
-        />
+        <WhyChooseUs cityName="Waco" features={whyFeatures} title="Why Central Texas Chooses IronPath" />
       </div>
-
-      {/* 7. How it works — process after the CTA so urgency is set */}
+      <div className={styles.section}>
+        <WhatToExpect sectionTitle="What to Expect Working With Us" expectations={expectations} />
+      </div>
       <div className={styles.section}>
         <ProcessTimeline steps={processSteps} />
       </div>
-
-      {/* 8. Social proof — reviews before the guarantee promise */}
       <div className={styles.section}>
         <Testimonials testimonials={reviews} />
       </div>
-
-      {/* 9. Guarantee — peer validation already done, now make the promise */}
       <div className={styles.section}>
         <GuaranteeSection />
       </div>
-
-      {/* 6. Mid-page CTA — emergency hook before process details */}
+      <div className={styles.section}>
+        <LocalServiceAreas cityName="Waco" areas={localAreas} servicePath="services" title="Serving Waco & Central Texas" />
+      </div>
+      <div className={styles.section}>
+        <FAQ cityName="Waco" faq={faq} title="Concrete FAQs" />
+      </div>
       <CTABanner
-        headline="AC Out or Heat Down? Call Us Right Now."
-        subline="Same-day and emergency service across Waco, Hewitt, Woodway, Robinson, and all of Central Texas. Flat-rate pricing. 1-year warranty."
-        primaryText="Call (254) 900-1234"
-        primaryLink="tel:+12549001234"
-        secondaryText="Book Online"
+        headline="Ready for Concrete Done Right?"
+        subline="Free on-site estimate. Flat-rate quotes. ACI-trained finishers. 5-Year Workmanship Warranty."
+        primaryText="Call (254) 750-4400"
+        primaryLink="tel:+12547504400"
+        secondaryText="Get a Free Quote"
         secondaryLink="/contact"
       />
-
-
-      {/* 10. Service areas */}
-      <div className={styles.section}>
-        <LocalServiceAreas
-          cityName="Waco"
-          areas={localAreas}
-          servicePath=""
-          title="Serving All of Central Texas"
-        />
-      </div>
-
-      {/* 11. What to expect (detail reassurance — lower in page) */}
-      <div className={styles.section}>
-        <WhatToExpect
-          sectionTitle="Every Service Call, Every Time"
-          expectations={expectations}
-        />
-      </div>
-
-      {/* 12. FAQ */}
-      <div className={styles.section}>
-        <FAQ
-          cityName="Waco"
-          faq={faq}
-          title="HVAC Questions — Answered Straight"
-        />
-      </div>
-
-      {/* 13. Blog preview — educational content before the final form */}
       <div className={styles.section}>
         <BlogPreviewGrid />
       </div>
-
+      <div className={styles.section}>
+        <Variant4
+          title="Get Your Free Concrete Estimate"
+          cityName="Waco"
+          slug="home"
+          spot="homepage"
+          formVariant={4}
+        />
+      </div>
     </main>
   );
 }
