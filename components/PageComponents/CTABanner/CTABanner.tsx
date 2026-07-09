@@ -15,11 +15,11 @@ interface CTABannerProps {
 }
 
 export default function CTABanner({
-  headline      = "Ready to Stay Comfortable Year-Round?",
-  subline   = "Same-day appointments available. Flat-rate pricing — no hidden fees. Call now or grab a free estimate online.",
-  primaryText  = "Call (254) 900-1234",
-  primaryLink   = "tel:+12549001234",
-  secondaryText = "Free Estimate",
+  headline      = "Ready for Concrete Built the Right Way?",
+  subline   = "Free on-site estimates. Flat-rate quotes — no hidden fees. Call now or request a free quote online.",
+  primaryText  = "Call (254) 750-4400",
+  primaryLink   = "tel:+12547504400",
+  secondaryText = "Free Quote",
   secondaryLink  = "/contact",
   spot = "CTABanner",
 }: CTABannerProps) {
@@ -57,7 +57,7 @@ export default function CTABanner({
         >
           <span className={styles.eyebrow}>
             <span className={styles.eyebrowDot} />
-            Central Texas HVAC Experts Since 2010
+            Central Texas Concretery Experts Since 2008
           </span>
           <h2 className={styles.heading}>{headline}</h2>
           <p className={styles.sub}>{subline}</p>

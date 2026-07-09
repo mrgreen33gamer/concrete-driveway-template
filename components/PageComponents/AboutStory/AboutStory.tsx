@@ -23,32 +23,32 @@ const AboutStory: React.FC<AboutStoryProps> = ({ cityName }) => {
         <div className={styles.storyBody}>
           <div className={styles.storyPull}>
             <p className={styles.pullQuote}>
-              "We started Arctic Air because we were tired of watching homeowners get ripped off by fly-by-night HVAC contractors."
+              &quot;We started Heritage because we were tired of watching homeowners get pressured into concrete they didn&apos;t need — or shoddy installs that failed in a year.&quot;
             </p>
             <div className={styles.pullAttrib}>
-              <span className={styles.pullName}>— Mike Hawkins</span>
-              <span className={styles.pullTitle}>Founder, Arctic Air HVAC</span>
+              <span className={styles.pullName}>— Ray Delgado</span>
+              <span className={styles.pullTitle}>Founder, IronPath &amp; Tile Co.</span>
             </div>
           </div>
 
           <div className={styles.storyText}>
             <p className={styles.storyParagraph}>
-              Founded in 2010 in Waco, TX, Arctic Air HVAC started with one truck and one principle:
-              give homeowners the straight story about their system, charge a fair price, and back the
-              work with a real warranty. No hourly billing surprises, no upsell pressure, no contracts.
+              Founded in 2008 in Waco, TX, IronPath &amp; Tile Co. started with one crew and one principle:
+              measure carefully, quote flat-rate, install it right, and back the work with a real warranty.
+              No hourly billing surprises, no upsell pressure, no contracts.
             </p>
             <p className={styles.storyParagraph}>
               Today we proudly serve <strong>{cityName}</strong> and every surrounding community —
-              from China Spring to Killeen — with a crew of NATE-certified, TDLR-licensed technicians
+              from China Spring to Killeen — with shop-certified craftspersons
               who live and work right here in Central Texas.
             </p>
 
             <div className={styles.milestones}>
               {[
-                { year: '2010', label: 'Founded in Waco' },
-                { year: '2014', label: 'Expanded to 5 techs' },
-                { year: '2018', label: '1,000 customers served' },
-                { year: '2024', label: '2,400+ systems serviced' },
+                { year: '2008', label: 'Founded in Waco' },
+                { year: '2015', label: 'Expanded to full crew' },
+                { year: '2019', label: '1,000 concrete installed' },
+                { year: '2025', label: '1,800+ concrete installed' },
               ].map((m, i) => (
                 <div key={i} className={styles.milestone}>
                   <span className={styles.milestoneYear}>{m.year}</span>

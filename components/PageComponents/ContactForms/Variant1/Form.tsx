@@ -27,7 +27,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleCheck, faExclamationTriangle, faArrowRight,
   faPhone, faStar, faShieldHalved, faClock, faTag,
-  faFan, faFire, faWrench, faFilter, faThermometerHalf, faWind, faBolt,
+  faRoad, faPersonWalking, faHouse, faPaintRoller, faWrench, faIndustry, faBolt,
 } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getJourneyContext } from '&/useJourneyTracker';
@@ -38,21 +38,21 @@ interface Variant1Props {
 }
 
 const SERVICES = [
-  { icon: faFan,             label: 'AC Repair' },
-  { icon: faFire,            label: 'Heating / Furnace' },
-  { icon: faWrench,          label: 'New Installation' },
-  { icon: faFilter,          label: 'Duct Cleaning' },
-  { icon: faThermometerHalf, label: 'Maintenance' },
-  { icon: faWind,            label: 'Air Quality' },
-  { icon: faBolt,            label: 'Emergency' },
+  { icon: faRoad,            label: 'Driveways' },
+  { icon: faPersonWalking,   label: 'Patios & Walkways' },
+  { icon: faHouse,           label: 'Foundations' },
+  { icon: faPaintRoller,     label: 'Stamped & Decorative' },
+  { icon: faWrench,          label: 'Concrete Repair' },
+  { icon: faIndustry,        label: 'Commercial Flatwork' },
+  { icon: faBolt,            label: 'Other / Not Sure' },
 ];
 
 // Compact trust chips (replaces standalone .trustStrip block)
 const TRUST_CHIPS = [
-  { icon: faClock,        text: 'Same-day available' },
+  { icon: faClock,        text: 'Free estimates' },
   { icon: faTag,          text: 'Flat-rate pricing' },
-  { icon: faShieldHalved, text: 'NATE · TDLR' },
-  { icon: faStar,         text: '4.9★ · 300+ reviews' },
+  { icon: faShieldHalved, text: 'ACI · Insured' },
+  { icon: faStar,         text: '4.9★ · 900+ reviews' },
 ];
 
 export default function Variant1({ title, cityName, slug, spot, formVariant }: Variant1Props) {
@@ -133,12 +133,12 @@ export default function Variant1({ title, cityName, slug, spot, formVariant }: V
                 </div>
                 <h3 className={styles.successTitle}>Request Received!</h3>
                 <p className={styles.successText}>
-                  A licensed Arctic Air technician will reach out shortly. Keep an eye on your inbox and phone.
+                  An IronPath estimator will reach out shortly. Keep an eye on your inbox and phone.
                 </p>
                 <div className={styles.successBadges}>
                   <span>✓ Flat-rate quote</span>
                   <span>✓ No pressure</span>
-                  <span>✓ Same-day available</span>
+                  <span>✓ Free estimates</span>
                 </div>
               </motion.div>
             ) : (
@@ -171,7 +171,7 @@ export default function Variant1({ title, cityName, slug, spot, formVariant }: V
                       <div className={styles.field}>
                         <label className={styles.label} htmlFor="v1r-phone">Phone *</label>
                         <input id="v1r-phone" className={styles.input} name="phone" type="tel"
-                          placeholder="(254) 555-0100" required value={formData.phone} onChange={handleChange} />
+                          placeholder="(254) 750-4400" required value={formData.phone} onChange={handleChange} />
                       </div>
                     </div>
                     <div className={styles.field}>
@@ -206,9 +206,9 @@ export default function Variant1({ title, cityName, slug, spot, formVariant }: V
                     <div className={styles.altContact}>
                       <FontAwesomeIcon icon={faPhone} />
                       <span>Need help now?{' '}
-                        <a href="tel:+12549001234"
-                          onClick={() => trackEvent({ eventType: 'phone_click', elementLabel: 'Call (254) 900-1234', section: 'ContactForm-V1' })}>
-                          Call (254) 900-1234
+                        <a href="tel:+12547504400"
+                          onClick={() => trackEvent({ eventType: 'phone_click', elementLabel: 'Call (254) 750-4400', section: 'ContactForm-V1' })}>
+                          Call (254) 750-4400
                         </a>
                       </span>
                     </div>
