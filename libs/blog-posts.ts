@@ -19,7 +19,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Curing',
     date:     'April 18, 2026',
     readTime: 7,
-    imageSrc: '/pages/blogs/ac-replacement.jpg',
+    imageSrc: '/pages/home/welcome/hero-main.jpg',
     imageAlt: 'New concrete driveway curing timeline for Waco Texas homes',
     featured: true,
   },
@@ -30,7 +30,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Finishes',
     date:     'April 14, 2026',
     readTime: 8,
-    imageSrc: '/pages/blogs/energy-savings.jpg',
+    imageSrc: '/pages/home/welcome/after.jpg',
     imageAlt: 'Stamped concrete versus broom finish comparison for Texas homes',
   },
   {
@@ -40,7 +40,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Foundations',
     date:     'April 10, 2026',
     readTime: 7,
-    imageSrc: '/pages/blogs/heat-pump.jpg',
+    imageSrc: '/pages/home/services/service-1.jpg',
     imageAlt: 'Foundation crack warning signs for Waco Texas homes',
   },
 ];

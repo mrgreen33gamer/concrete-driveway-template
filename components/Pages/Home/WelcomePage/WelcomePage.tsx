@@ -1,166 +1,181 @@
+// _archetype-library/hero-i-editorial/Component.tsx
+//
+// Hero I: Minimal Editorial — oversized typography, single accent shape,
+// large negative space. Optional accentWord as huge watermark typography.
+// No canvas, no stat cards, no widget.
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { PhoneIcon, ChevronIcon, CheckIcon } from './_shared/icons';
 import styles from './styles.module.scss';
 
-// ── Concrete dust / aggregate canvas ─────────────────────────────────────────
-function ParticleCanvas() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = ref.current; if (!canvas) return;
-    const ctx = canvas.getContext('2d'); if (!ctx) return;
-    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
-    resize(); window.addEventListener('resize', resize);
-    const pts = Array.from({ length: 34 }, () => ({
-      x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-      r: Math.random() * 3.5 + 1, vx: (Math.random() - 0.5) * 0.8,
-      vy: Math.random() * 0.35 + 0.12, o: Math.random() * 0.35 + 0.55,
-      spin: Math.random() * 0.05 - 0.025, angle: Math.random() * Math.PI * 2,
-    }));
-    let raf: number;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      pts.forEach(p => {
-        ctx.save(); ctx.globalAlpha = p.o;
-        ctx.translate(p.x, p.y); ctx.rotate(p.angle);
-        ctx.fillStyle = '#b45309';
-        ctx.fillRect(-p.r, -p.r * 0.5, p.r * 2, p.r);
-        ctx.restore();
-        p.x += p.vx; p.y += p.vy; p.angle += p.spin;
-        if (p.y > canvas.height + 10) { p.y = -10; p.x = Math.random() * canvas.width; }
-        if (p.x < -10) p.x = canvas.width + 10;
-        if (p.x > canvas.width + 10) p.x = -10;
-      });
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
-  }, []);
-  return <canvas ref={ref} className={styles.particleCanvas} aria-hidden="true" />;
-}
-
-// ── Pour / cure meter ────────────────────────────────────────────────────────
-function InstallMeter() {
-  const [fill, setFill] = useState(0);
-  useEffect(() => { const t = setTimeout(() => setFill(100), 750); return () => clearTimeout(t); }, []);
-  return (
-    <div className={styles.thermo} aria-hidden="true">
-      <div className={styles.thermoColumn}>
-        <div className={styles.thermoTube}>
-          <motion.div
-            className={styles.thermoFill}
-            initial={{ height: '0%' }}
-            animate={{ height: `${fill}%` }}
-            transition={{ duration: 2.0, delay: 0.85, ease: [0.34, 1.2, 0.64, 1] }}
-          />
-        </div>
-        <div className={styles.thermoBulb} />
-      </div>
-      <div className={styles.thermoLabels}>
-        <span className={styles.thermoTop}>Cured</span>
-        <span className={styles.thermoMid}>Waco, TX</span>
-        <span className={styles.thermoBot}>Poured</span>
-      </div>
-    </div>
-  );
-}
-
-const CHIPS = ['Free Estimates', 'Flat-Rate Quotes', 'ACI-Trained', '18+ Yrs Local', '5-Yr Warranty'];
-
 export default function WelcomePage() {
+const badgeText = 'Waco\'s Trusted Concrete Contractor — Since 2008';
+const headlineLines = [
+  'Driveways. Patios.',
+  'Foundations.',
+];
+const headlineAccent = 'IronPath.';
+const subheadline = 'Free on-site estimates. Flat-rate quotes. 5-Year Workmanship Warranty on every pour. Driveways · Patios · Foundations done right for Central Texas homes and businesses.';
+const primaryCta = { label: 'Call (254) 750-4400', href: 'tel:+12547504400' };
+const secondaryCta = { label: 'Free Quote', href: '/contact' };
+const chips = [
+  'Free Estimates',
+  'Flat-Rate Quotes',
+  'ACI-Trained',
+  '18+ Yrs Local',
+  '5-Yr Warranty',
+];
+const stats = [
+  {
+    "value": "500+",
+    "label": "Jobs Done"
+  },
+  {
+    "value": "4.9 ★",
+    "label": "Rating"
+  },
+  {
+    "value": "15+",
+    "label": "Years Local"
+  },
+  {
+    "value": "1-Yr",
+    "label": "Warranty"
+  }
+];
+const meterTarget = 72;
+const meterTopLabel = "Peak load";
+const meterMidLabel = "Crew";
+const meterBotLabel = "Base";
+const particleColor = '#78716c';
+const beforeImageSrc = '/pages/home/welcome/before.jpg';
+const afterImageSrc = '/pages/home/welcome/after.jpg';
+const beforeLabel = "Cracked slab";
+const afterLabel = "New pour";
+const mapCenterLabel = 'Service HQ';
+const mapPins = [
+  { label: 'Waco', x: 42, y: 48 },
+  { label: 'Temple', x: 68, y: 62 },
+  { label: 'Killeen', x: 58, y: 72 },
+];
+const coverageLabel = 'Central Texas coverage';
+const materials = [
+  { name: "Broom", swatch: "#78716c", imageSrc: "/pages/home/welcome/mat-1.jpg" },
+  { name: "Stamped", swatch: "#a8a29e", imageSrc: "/pages/home/welcome/mat-2.jpg" },
+  { name: "Exposed", swatch: "#57534e", imageSrc: "/pages/home/welcome/mat-3.jpg" },
+  { name: "Sealed", swatch: "#d6d3d1", imageSrc: "/pages/home/welcome/mat-1.jpg" },
+  { name: "Colored", swatch: "#44403c", imageSrc: "/pages/home/welcome/mat-2.jpg" },
+  { name: "Repair", swatch: "#292524", imageSrc: "/pages/home/welcome/mat-3.jpg" }
+];
+const quote = "Driveway pour was on time, joints look intentional, and the broom finish is perfect.";
+const authorName = "Ryan C.";
+const authorMeta = "Driveway · McGregor";
+const rating = 5;
+const schematicLabel = "IronPath schematic";
+const gauges = [
+  { label: "Pours", value: "2,400+" },
+  { label: "Rating", value: "4.8 ★" },
+  { label: "Cure plan", value: "Included" },
+  { label: "Warranty", value: "2-yr" }
+];
+const toggles = [
+  { label: "Licensed crew", on: true },
+  { label: "Same-week", on: true },
+  { label: "Warrantied", on: true }
+];
+const textureSrc = '/pages/home/welcome/hero-main.jpg';
+const textureAlt = 'Texture';
+const accentWord = "IronPath";
+
   return (
     <section className={styles.hero} aria-label="Hero">
-      <ParticleCanvas />
-      <div className={styles.shard} aria-hidden="true" />
+      {/* Single geometric accent — not a content widget */}
+      <div className={styles.accentShape} aria-hidden="true" />
+      <div className={styles.hairline} aria-hidden="true" />
+
+      {accentWord ? (
+        <div className={styles.watermarkSlot} aria-hidden="true">
+          <motion.span
+            className={styles.watermark}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.0, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {accentWord}
+          </motion.span>
+        </div>
+      ) : null}
 
       <div className={styles.layout}>
-
         <div className={styles.content}>
-          <motion.div className={styles.badge}
-            initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}>
+          <motion.div
+            className={styles.badge}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <span className={styles.badgeDot} />
-            Waco&apos;s Trusted Concrete Contractor — Since 2008
+            {badgeText}
           </motion.div>
 
-          <motion.h1 className={styles.headline}
-            initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}>
-            Driveways. Patios.<br />Foundations.<br />
-            <span className={styles.accentLine}>IronPath.</span>
+          <motion.h1
+            className={styles.headline}
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {headlineLines.map((line, i) => (
+              <React.Fragment key={i}>{line}<br /></React.Fragment>
+            ))}
+            <span className={styles.accentLine}>{headlineAccent}</span>
           </motion.h1>
 
-          <motion.p className={styles.sub}
-            initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.22 }}>
-            Free on-site estimates. Flat-rate quotes. 5-Year Workmanship Warranty on every pour.
-            Driveways · Patios · Foundations done right for Central Texas homes and businesses.
+          <motion.div
+            className={styles.rule}
+            aria-hidden="true"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.65, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          />
+
+          <motion.p
+            className={styles.sub}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.32 }}
+          >
+            {subheadline}
           </motion.p>
 
-          <motion.div className={styles.ctaRow}
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.34 }}>
-            <a href="tel:+12547504400" className={styles.ctaPrimary}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.17 12a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-              Call (254) 750-4400
+          <motion.div
+            className={styles.ctaRow}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.42 }}
+          >
+            <a href={primaryCta.href} className={styles.ctaPrimary}>
+              <PhoneIcon size={15} /> {primaryCta.label}
             </a>
-            <Link href="/contact" className={styles.ctaSecondary}>
-              Free Quote
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
+            <Link href={secondaryCta.href} className={styles.ctaSecondary}>
+              {secondaryCta.label} <ChevronIcon size={12} />
             </Link>
           </motion.div>
 
-          <motion.div className={styles.chips}
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.48 }}>
-            {CHIPS.map(c => (
+          <motion.div
+            className={styles.chips}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.55 }}
+          >
+            {chips.map((c) => (
               <span key={c} className={styles.chip}>
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                {c}
+                <CheckIcon size={9} /> {c}
               </span>
             ))}
           </motion.div>
         </div>
-
-        <motion.div
-          className={styles.visual}
-          initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.28, ease: 'easeOut' }}
-          aria-hidden="true"
-        >
-          <motion.div className={styles.bgFlake}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 65, repeat: Infinity, ease: 'linear' }}>
-            <svg width="420" height="420" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.3" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <line x1="3" y1="9" x2="21" y2="9"/>
-              <line x1="9" y1="21" x2="9" y2="9"/>
-            </svg>
-          </motion.div>
-
-          <motion.div className={`${styles.statCard} ${styles.sc1}`}
-            initial={{ opacity: 0, y: -10, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 1.05, type: 'spring', stiffness: 240, damping: 18 }}>
-            <span className={styles.statNum}>4.9★</span>
-            <span className={styles.statLabel}>900+ Reviews</span>
-          </motion.div>
-
-          <motion.div className={`${styles.statCard} ${styles.sc2}`}
-            initial={{ opacity: 0, y: 10, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 1.25, type: 'spring', stiffness: 240, damping: 18 }}>
-            <span className={styles.statNum}>4,000+</span>
-            <span className={styles.statLabel}>Pours Done</span>
-          </motion.div>
-
-          <InstallMeter />
-        </motion.div>
       </div>
     </section>
   );

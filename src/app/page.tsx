@@ -35,36 +35,42 @@ export default function HomePage() {
       title: "Driveways",
       body: "New and replacement concrete driveways with proper base prep, control joints, and finishes built for Central Texas soil and heat.",
       link: "/services/driveways",
+      image: "/pages/home/services/service-1.jpg",
     },
     {
       icon: faPersonWalking,
       title: "Patios & Walkways",
       body: "Patio slabs, sidewalks, and walkways with drainage-smart layouts and clean, traction-ready finishes.",
       link: "/services/patios-walkways",
+      image: "/pages/home/services/service-2.jpg",
     },
     {
       icon: faHouse,
       title: "Foundations",
       body: "Residential and light commercial foundation slabs coordinated with builders — plan-driven and inspection-ready.",
       link: "/services/foundations",
+      image: "/pages/home/services/service-3.jpg",
     },
     {
       icon: faPaintRoller,
       title: "Stamped & Decorative",
       body: "Stamped patterns, color, and decorative finishes that deliver curb appeal without paver maintenance.",
       link: "/services/stamped-decorative",
+      image: "/pages/home/services/service-4.jpg",
     },
     {
       icon: faWrench,
       title: "Concrete Repair",
       body: "Crack repair, section replacement, and honest advice on when to repair vs. fully replace a failing slab.",
       link: "/services/concrete-repair",
+      image: "/pages/home/services/service-1.jpg",
     },
     {
       icon: faIndustry,
       title: "Commercial Flatwork",
       body: "Parking pads, sidewalks, equipment pads, and light commercial slabs for PMs and municipalities.",
       link: "/services/commercial-flatwork",
+      image: "/pages/home/services/service-2.jpg",
     },
   ];
 
@@ -165,6 +171,9 @@ export default function HomePage() {
       <WelcomePage />
       <TrustBar headline="4.9★ · 900+ reviews · 4,000+ pours across Central Texas" />
       <div className={styles.section}>
+        <ImpactMetrics metrics={metrics} cityName="Waco" title="18 Years, By the Numbers" />
+      </div>
+      <div className={styles.section}>
         <ServiceCardComponent
           heading="Concrete Services Built for Central Texas"
           subheading="Driveways, patios, foundations, decorative pours, repairs, and commercial flatwork — flat-rate quotes and ACI-trained finishers."
@@ -172,13 +181,10 @@ export default function HomePage() {
         />
       </div>
       <div className={styles.section}>
-        <ImpactMetrics metrics={metrics} cityName="Waco" title="18 Years, By the Numbers" />
+        <WhatToExpect sectionTitle="What to Expect Working With Us" expectations={expectations} />
       </div>
       <div className={styles.section}>
         <WhyChooseUs cityName="Waco" features={whyFeatures} title="Why Central Texas Chooses IronPath" />
-      </div>
-      <div className={styles.section}>
-        <WhatToExpect sectionTitle="What to Expect Working With Us" expectations={expectations} />
       </div>
       <div className={styles.section}>
         <ProcessTimeline steps={processSteps} />
@@ -189,20 +195,22 @@ export default function HomePage() {
       <div className={styles.section}>
         <GuaranteeSection />
       </div>
+      <CTABanner
+        headline="Concrete That Holds Up to Texas."
+        subline="Driveways, patios, and flatwork — proper base, control joints, and finishes that survive heat and freezes."
+        primaryText="Call (254) 750-4400"
+        primaryLink="tel:+12547504400"
+        secondaryText="Free On-Site Quote"
+        secondaryLink="/contact"
+      
+        imageSrc="/pages/home/welcome/hero-main.jpg"
+       />
       <div className={styles.section}>
         <LocalServiceAreas cityName="Waco" areas={localAreas} servicePath="services" title="Serving Waco & Central Texas" />
       </div>
       <div className={styles.section}>
         <FAQ cityName="Waco" faq={faq} title="Concrete FAQs" />
       </div>
-      <CTABanner
-        headline="Ready for Concrete Done Right?"
-        subline="Free on-site estimate. Flat-rate quotes. ACI-trained finishers. 5-Year Workmanship Warranty."
-        primaryText="Call (254) 750-4400"
-        primaryLink="tel:+12547504400"
-        secondaryText="Get a Free Quote"
-        secondaryLink="/contact"
-      />
       <div className={styles.section}>
         <BlogPreviewGrid />
       </div>
