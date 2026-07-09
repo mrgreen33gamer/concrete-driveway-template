@@ -259,3 +259,51 @@
     justify-content: center;
   }
 }
+
+/* === COOKIE UNIQUENESS — concrete-driveway-template === */
+.backdrop {
+  bottom: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  top: auto !important;
+  max-width: 100% !important;
+  transform: none;
+}
+
+.card {
+  background: linear-gradient(145deg, $obsidian 0%, color.adjust($obsidian, $lightness: 4%) 100%) !important;
+  border: 1px solid rgba($white, 0.08) !important;
+  border-radius: 18px !important;
+  padding: 1.75rem !important;
+  border-bottom: 3px solid $orange !important;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba($orange, 0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+}
+
+.iconWrap {
+  border-radius: 8px !important;
+  background: rgba($orange, 0.14) !important;
+  border-color: rgba($orange, 0.28) !important;
+  color: $orange !important;
+}
+
+.btnAccept {
+  background: $lightorange !important;
+  color: $obsidian !important;
+  border-radius: 4px !important;
+  &:hover { filter: brightness(1.08); }
+}
+
+.btnDecline,
+.btnEssential {
+  border-radius: 4px !important;
+}
+/* end cookie uniqueness */
