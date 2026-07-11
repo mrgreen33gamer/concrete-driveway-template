@@ -37,7 +37,7 @@ const personSchema = {
 
 const AuthorBio: React.FC<AuthorBioProps> = ({
   cityName,
-  imageSrc = "/pages/seo-template-resources/owner.jpg",
+  imageSrc = "/pages/home/welcome/hero-main.jpg",
   imageAlt = "Ray Delgado - Founder of IronPath Concrete",
 }) => {
   const trackEvent = useTrackEvent();
