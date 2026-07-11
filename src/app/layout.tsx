@@ -116,7 +116,7 @@ export const metadata: Metadata = {
     siteName: "IronPath Concrete",
     images: [
       {
-        url: `${BASE_URL}/logos/scott-apps-banner.png?v=1`,
+        url: `${BASE_URL}/pages/home/welcome/hero-main.jpg`,
         width: 4000,
         height: 630,
         alt: "IronPath Concrete — Waco TX Driveways · Patios · Foundations",
@@ -130,7 +130,7 @@ export const metadata: Metadata = {
     title: "IronPath Concrete | Waco TX Concrete Contractor",
     description:
       "Driveways, patios, foundations, stamped concrete & commercial flatwork for Central Texas. ACI-trained · 5-Year Workmanship Warranty.",
-    images: [`${BASE_URL}/logos/scott-apps-banner.png?v=1`],
+    images: [`${BASE_URL}/pages/home/welcome/hero-main.jpg`],
   },
   robots: {
     index: true,

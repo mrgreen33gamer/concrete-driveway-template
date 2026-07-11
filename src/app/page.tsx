@@ -63,14 +63,14 @@ export default function HomePage() {
       title: "Concrete Repair",
       body: "Crack repair, section replacement, and honest advice on when to repair vs. fully replace a failing slab.",
       link: "/services/concrete-repair",
-      image: "/pages/home/services/service-1.jpg",
+      image: "/pages/home/welcome/before.jpg",
     },
     {
       icon: faIndustry,
       title: "Commercial Flatwork",
       body: "Parking pads, sidewalks, equipment pads, and light commercial slabs for PMs and municipalities.",
       link: "/services/commercial-flatwork",
-      image: "/pages/home/services/service-2.jpg",
+      image: "/pages/home/welcome/after.jpg",
     },
   ];
 
