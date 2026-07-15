@@ -28,108 +28,52 @@
   }
 }
 
-// Single oversized geometric accent (right field)
-.accentShape {
+// ── Photographic parallax background ──────────────────────────────────────────
+// Replaces the old abstract accent-shape/hairline/watermark right field with
+// an authentic jobsite photo (see .visual / .photoCard below for the framed card).
+.bgLayer {
   position: absolute;
-  top: 50%;
-  right: -8%;
-  width: min(48vw, 560px);
-  height: min(48vw, 560px);
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 40% 40%,
-    rgba($orange, 0.1) 0%,
-    rgba($orange, 0.03) 45%,
-    transparent 70%
-  );
-  border: 1px solid rgba($orange, 0.1);
-  pointer-events: none;
+  top: -8%;
+  left: 0;
+  width: 100%;
+  height: 116%;
   z-index: 0;
-
-  @media (max-width: 960px) {
-    width: min(70vw, 360px);
-    height: min(70vw, 360px);
-    right: -20%;
-    top: 18%;
-    transform: none;
-    opacity: 0.7;
-  }
+  will-change: transform;
 }
 
-// Vertical hairline for editorial structure
-.hairline {
+.bgImage {
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+// Charcoal/stone scrim — keeps the photo on-brand and the headline legible.
+// Darker on the left (text column), lighter on the right (photo card).
+.scrim {
   position: absolute;
-  top: 12%;
-  bottom: 12%;
-  right: clamp(2rem, 12vw, 9rem);
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba($white, 0.1) 20%,
-    rgba($orange, 0.25) 50%,
-    rgba($white, 0.1) 80%,
-    transparent 100%
-  );
-  pointer-events: none;
+  inset: 0;
   z-index: 1;
-
-  @media (max-width: 960px) {
-    display: none;
-  }
-}
-
-.watermarkSlot {
-  position: absolute;
-  right: clamp(-2rem, 2vw, 1rem);
-  top: 50%;
-  transform: translateY(-50%);
   pointer-events: none;
-  z-index: 0;
-  max-width: 55%;
-  overflow: hidden;
-  text-align: right;
-
-  @media (max-width: 960px) {
-    right: 0;
-    top: auto;
-    bottom: 6%;
-    transform: none;
-    max-width: 100%;
-    width: 100%;
-    text-align: center;
-  }
-}
-
-.watermark {
-  display: block;
-  font-family: $titleFont;
-  font-size: clamp(5.5rem, 14vw, 13rem);
-  font-weight: 800;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba($white, 0.06);
-  text-transform: uppercase;
-  white-space: nowrap;
-  user-select: none;
-
-  @media (max-width: 960px) {
-    font-size: clamp(4rem, 18vw, 7rem);
-    opacity: 0.7;
-  }
+  background:
+    radial-gradient(120% 90% at 84% 14%, rgba($orange, 0.2) 0%, rgba($orange, 0) 55%),
+    radial-gradient(90% 80% at 8% 96%, rgba($darkorange, 0.28) 0%, rgba($darkorange, 0) 60%),
+    linear-gradient(100deg, rgba(20, 17, 15, 0.95) 0%, rgba(24, 21, 18, 0.84) 42%, rgba(28, 25, 22, 0.52) 74%, rgba(28, 25, 22, 0.36) 100%),
+    linear-gradient(180deg, rgba(20, 17, 15, 0.32) 0%, rgba(20, 17, 15, 0) 32%, rgba(20, 17, 15, 0.58) 100%);
 }
 
 .layout {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   max-width: 1380px;
   margin: 0 auto;
   padding: clamp(6rem, 11vh, 9rem) clamp(1.5rem, 5vw, 5rem) clamp(5rem, 9vh, 7rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
 
   @media (max-width: 960px) {
+    grid-template-columns: 1fr;
     text-align: center;
     padding: clamp(5rem, 9vh, 7rem) 1.5rem clamp(4rem, 7vh, 6rem);
   }
@@ -298,6 +242,112 @@
     color: rgba($orange, 0.75);
   }
 }
+// ── Authentic jobsite photo card (replaces the old accent-shape/watermark field) ──
+.visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+}
+
+.photoCard {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 4 / 5;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  border: 1px solid rgba($lightorange, 0.32);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 30px 60px -20px rgba(0, 0, 0, 0.65),
+    0 0 0 6px rgba($orange, 0.08);
+}
+
+.photo {
+  object-fit: cover;
+  object-position: 30% 25%;
+}
+
+// Charcoal-to-shadow glaze so the overlays stay readable and it reads as designed
+.photoGlaze {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 17, 15, 0) 42%, rgba(20, 17, 15, 0.76) 100%),
+    linear-gradient(300deg, rgba($orange, 0.18) 0%, rgba($orange, 0) 46%);
+}
+
+.photoBadge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $textFont;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $offwhite;
+  background: rgba(20, 17, 15, 0.62);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba($lightorange, 0.32);
+  border-radius: $radius-pill;
+  padding: 0.4rem 0.85rem;
+}
+
+.photoBadgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $lightorange;
+  box-shadow: 0 0 8px 1px rgba($lightorange, 0.8);
+  flex-shrink: 0;
+}
+
+.specCard {
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem 1rem;
+  border-radius: $radius-md;
+  background: rgba(20, 17, 15, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba($lightorange, 0.26);
+}
+
+.specRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: $headerFont;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba($offwhite, 0.94);
+
+  svg {
+    color: $lightorange;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .visual {
+    min-height: 0;
+    margin-top: 0.25rem;
+  }
+  .photoCard {
+    max-width: 360px;
+    aspect-ratio: 4 / 3;
+  }
+}
 
 /* === UNIQUENESS IDENTITY LAYER — concrete-driveway-template === */
 /* Auto-generated visual identity so shared archetypes diverge per brand. */
@@ -366,7 +416,7 @@
     background-size: auto !important;
     opacity: 0.90 !important;
     pointer-events: none !important;
-    z-index: 0 !important;
+    z-index: 2 !important;
   }
 
   &::after {
@@ -375,7 +425,7 @@
     inset: 0 !important;
     background-image: radial-gradient(ellipse 50% 40% at 19% 3%, rgba($orange, 0.096), transparent 70%), radial-gradient(ellipse 40% 50% at 93% 57%, rgba($white, 0.03), transparent 65%) !important;
     pointer-events: none !important;
-    z-index: 0 !important;
+    z-index: 2 !important;
   }
 }
 /* end hero pattern */
@@ -415,9 +465,10 @@
 }
 
 /* === TABLET + MOBILE HERO VISUAL DEFER (fleet QA) === */
-/* Hide side dials/meters on tablet & phone so the hero fold stays clean */
+/* Hide side dials/meters on tablet & phone so the hero fold stays clean. */
+/* .visual is intentionally excluded — it now holds the authentic jobsite */
+/* photo card, which must stay visible (stacked) on tablet and phone. */
 @media (max-width: 960px) {
-  .visual,
   .heroVisual,
   .meterWrap,
   .rightCol,

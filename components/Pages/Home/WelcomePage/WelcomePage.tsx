@@ -1,112 +1,64 @@
-// _archetype-library/hero-i-editorial/Component.tsx
-//
-// Hero I: Minimal Editorial — oversized typography, single accent shape,
-// large negative space. Optional accentWord as huge watermark typography.
-// No canvas, no stat cards, no widget.
+// IronPath Hero — Minimal Editorial + authentic parallax photography
+// Oversized typography, single accent shape treatment replaced with a real
+// jobsite photo: scroll-linked parallax background behind a stone/charcoal
+// scrim, plus a framed crew photo card on the right (spec-card overlay with
+// two proof points). Photos live in /public/pages/home/welcome.
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { PhoneIcon, ChevronIcon, CheckIcon } from './_shared/icons';
 import styles from './styles.module.scss';
 
 export default function WelcomePage() {
-const badgeText = 'Waco\'s Trusted Concrete Contractor — Since 2008';
-const headlineLines = [
-  'Driveways. Patios.',
-  'Foundations.',
-];
-const headlineAccent = 'IronPath.';
-const subheadline = 'Free on-site estimates. Flat-rate quotes. 5-Year Workmanship Warranty on every pour. Driveways · Patios · Foundations done right for Central Texas homes and businesses.';
-const primaryCta = { label: 'Call (254) 750-4400', href: 'tel:+12547504400' };
-const secondaryCta = { label: 'Free Quote', href: '/contact' };
-const chips = [
-  'Free Estimates',
-  'Flat-Rate Quotes',
-  'ACI-Trained',
-  '18+ Yrs Local',
-  '5-Yr Warranty',
-];
-const stats = [
-  {
-    "value": "500+",
-    "label": "Jobs Done"
-  },
-  {
-    "value": "4.9 ★",
-    "label": "Rating"
-  },
-  {
-    "value": "15+",
-    "label": "Years Local"
-  },
-  {
-    "value": "1-Yr",
-    "label": "Warranty"
-  }
-];
-const meterTarget = 72;
-const meterTopLabel = "Peak load";
-const meterMidLabel = "Crew";
-const meterBotLabel = "Base";
-const particleColor = '#78716c';
-const beforeImageSrc = '/pages/home/welcome/before.jpg';
-const afterImageSrc = '/pages/home/welcome/after.jpg';
-const beforeLabel = "Cracked slab";
-const afterLabel = "New pour";
-const mapCenterLabel = 'Service HQ';
-const mapPins = [
-  { label: 'Waco', x: 42, y: 48 },
-  { label: 'Temple', x: 68, y: 62 },
-  { label: 'Killeen', x: 58, y: 72 },
-];
-const coverageLabel = 'Central Texas coverage';
-const materials = [
-  { name: "Broom", swatch: "#78716c", imageSrc: "/pages/home/welcome/mat-1.jpg" },
-  { name: "Stamped", swatch: "#a8a29e", imageSrc: "/pages/home/welcome/mat-2.jpg" },
-  { name: "Exposed", swatch: "#57534e", imageSrc: "/pages/home/welcome/mat-3.jpg" },
-  { name: "Sealed", swatch: "#d6d3d1", imageSrc: "/pages/home/welcome/mat-1.jpg" },
-  { name: "Colored", swatch: "#44403c", imageSrc: "/pages/home/welcome/mat-2.jpg" },
-  { name: "Repair", swatch: "#292524", imageSrc: "/pages/home/welcome/mat-3.jpg" }
-];
-const quote = "Driveway pour was on time, joints look intentional, and the broom finish is perfect.";
-const authorName = "Ryan C.";
-const authorMeta = "Driveway · McGregor";
-const rating = 5;
-const schematicLabel = "IronPath schematic";
-const gauges = [
-  { label: "Pours", value: "2,400+" },
-  { label: "Rating", value: "4.8 ★" },
-  { label: "Cure plan", value: "Included" },
-  { label: "Warranty", value: "2-yr" }
-];
-const toggles = [
-  { label: "Licensed crew", on: true },
-  { label: "Same-week", on: true },
-  { label: "Warrantied", on: true }
-];
-const textureSrc = '/pages/home/welcome/hero-main.jpg';
-const textureAlt = 'Texture';
-const accentWord = "IronPath";
+  const reduceMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Scroll-linked parallax on the background photo. Disabled under reduced-motion.
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', reduceMotion ? '0%' : '14%']);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.06, reduceMotion ? 1.06 : 1.14]);
+
+  const badgeText = 'Waco\'s Trusted Concrete Contractor — Since 2008';
+  const headlineLines = [
+    'Driveways. Patios.',
+    'Foundations.',
+  ];
+  const headlineAccent = 'IronPath.';
+  const subheadline = 'Free on-site estimates. Flat-rate quotes. 5-Year Workmanship Warranty on every pour. Driveways · Patios · Foundations done right for Central Texas homes and businesses.';
+  const primaryCta = { label: 'Call (254) 750-4400', href: 'tel:+12547504400' };
+  const secondaryCta = { label: 'Free Quote', href: '/contact' };
+  const chips = [
+    'Free Estimates',
+    'Flat-Rate Quotes',
+    'ACI-Trained',
+    '18+ Yrs Local',
+    '5-Yr Warranty',
+  ];
 
   return (
-    <section className={styles.hero} aria-label="Hero">
-      {/* Single geometric accent — not a content widget */}
-      <div className={styles.accentShape} aria-hidden="true" />
-      <div className={styles.hairline} aria-hidden="true" />
-
-      {accentWord ? (
-        <div className={styles.watermarkSlot} aria-hidden="true">
-          <motion.span
-            className={styles.watermark}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.0, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {accentWord}
-          </motion.span>
-        </div>
-      ) : null}
+    <section ref={heroRef} className={styles.hero} aria-label="Hero">
+      {/* Photographic parallax background — real driveway pour, Central Texas */}
+      <motion.div
+        className={styles.bgLayer}
+        style={{ y: bgY, scale: bgScale }}
+        aria-hidden="true"
+      >
+        <Image
+          src="/pages/home/welcome/hero-parallax-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.bgImage}
+        />
+      </motion.div>
+      {/* Charcoal/stone scrim keeps the headline legible and on-brand */}
+      <div className={styles.scrim} aria-hidden="true" />
 
       <div className={styles.layout}>
         <div className={styles.content}>
@@ -176,6 +128,40 @@ const accentWord = "IronPath";
             ))}
           </motion.div>
         </div>
+
+        {/* Authentic jobsite photo — the ownable image, framed as a spec card */}
+        <motion.div
+          className={styles.visual}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className={styles.photoCard}>
+            <Image
+              src="/pages/home/welcome/hero-crew-card.jpg"
+              alt="Concrete crew member power-troweling a freshly poured driveway slab"
+              fill
+              priority
+              sizes="(max-width: 960px) 88vw, 460px"
+              className={styles.photo}
+            />
+            <div className={styles.photoGlaze} aria-hidden="true" />
+
+            <div className={styles.photoBadge}>
+              <span className={styles.photoBadgeDot} />
+              Live Pour · Central TX
+            </div>
+
+            <div className={styles.specCard}>
+              <span className={styles.specRow}>
+                <CheckIcon size={10} /> Free on-site estimates
+              </span>
+              <span className={styles.specRow}>
+                <CheckIcon size={10} /> 5-Year workmanship warranty
+              </span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
